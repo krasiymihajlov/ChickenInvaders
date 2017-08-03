@@ -1,7 +1,7 @@
 ﻿namespace Space_Invaders.Interfaces.Models.Players
 {
-    using Space_Invaders.Interfaces.Globals;
-    using Space_Invaders.Interfaces.IO.InputCommands;
+    using Globals;
+    using IO.InputCommands;
     using Space_Invaders.IO.InputCommands.Events;
 
     public interface IPlayer : IEntity
