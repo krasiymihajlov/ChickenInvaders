@@ -50,8 +50,8 @@
             // TODO: Add your initialization logic here
 
             // MUST BE DONE FROM HERE
-            this.player = new Exterminator(EntityConstants.SHIP_X_START_COORDINATES, 
-                EntityConstants.SHIP_Y_START_COORDINATES, "R21");
+            this.player = new Exterminator(EntityConstants.ShipXStartCoordinates, 
+                EntityConstants.ShipYStartCoordinates, "R21");
 
             this.player.Load(this.Content, this.GraphicsDevice, "Content/Pictures/Ship1.png");
             this.inputCommand.KeyPressed += this.player.OnKeyPressed;
