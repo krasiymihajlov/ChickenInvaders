@@ -1,4 +1,8 @@
-﻿namespace Space_Invaders.Interfaces.Models.Players
+﻿using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
+using Space_Invaders.Interfaces.Models.Weapons;
+
+namespace Space_Invaders.Interfaces.Models.Players
 {
     using Globals;
     using IO.InputCommands;
@@ -11,5 +15,7 @@
         int Points { get; }
 
         void OnKeyPressed(IInputCommand sender, KeyPressedEventArgs eventArgs);
+
+        void LoadWeapon(ContentManager content, GraphicsDevice device, string path);
     }
 }

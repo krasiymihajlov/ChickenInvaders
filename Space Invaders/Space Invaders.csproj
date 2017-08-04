@@ -54,12 +54,15 @@
     <Compile Include="Interfaces\IO\InputCommands\IInputCommand.cs" />
     <Compile Include="Interfaces\Models\Enemies\IEnemy.cs" />
     <Compile Include="Interfaces\Models\Players\IPlayer.cs" />
+    <Compile Include="Interfaces\Models\Weapons\IWeapon.cs" />
     <Compile Include="IO\InputCommands\Events\KeyPressedEventArgs.cs" />
     <Compile Include="IO\InputCommands\Events\KeyPressedEventHandler.cs" />
     <Compile Include="IO\InputCommands\InputCommand.cs" />
     <Compile Include="Models\Entities\Entity.cs" />
     <Compile Include="Models\Players\Exterminator.cs" />
     <Compile Include="Models\Players\Player.cs" />
+    <Compile Include="Models\Weapons\Bullet.cs" />
+    <Compile Include="Models\Weapons\Weapon.cs" />
     <Compile Include="StartUp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -92,7 +95,6 @@
   <ItemGroup>
     <Folder Include="Common\Constants\Global\" />
     <Folder Include="Interfaces\Models\Bonuses\" />
-    <Folder Include="Interfaces\Models\Weapons\" />
     <Folder Include="Models\Enimies\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,4 +1,8 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
+using Space_Invaders.Interfaces.Globals;
+using Space_Invaders.Interfaces.Models.Weapons;
+using Space_Invaders.Models.Weapons;
 
 namespace Space_Invaders.Models.Players
 {
@@ -9,12 +13,10 @@ namespace Space_Invaders.Models.Players
 
     public class Exterminator : Player
     {
-        private Rectangle bullet;
-        private bool bulletVisible;
         public Exterminator(int x, int y, string playerName)
             : base(x, y, playerName)
         {
-
+            Weapon = new Bullet(x, y, 20, 20);
         }
         
         public override void Update(GameTime gameTime, KeyboardState keyboardState)
@@ -39,11 +41,9 @@ namespace Space_Invaders.Models.Players
                 TryMoveDown();
             }
 
-            if (keyboardState.IsKeyDown(Keys.Space) && !this.bulletVisible)
+            if (keyboardState.IsKeyDown(Keys.Space))
             {
-                this.bulletVisible = true;
-                this.bullet.X = this.Rectangle.X + (this.Rectangle.Width / 2) - (this.bullet.Width / 2);
-                this.bullet.Y = this.Rectangle.Y - this.bullet.Height;
+                Weapon.Update(gameTime, keyboardState);
             }
         }
 

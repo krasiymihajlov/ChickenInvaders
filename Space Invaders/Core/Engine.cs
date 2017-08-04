@@ -1,4 +1,7 @@
-﻿namespace Space_Invaders.Core
+﻿using Space_Invaders.Interfaces.Globals;
+using Space_Invaders.Models.Weapons;
+
+namespace Space_Invaders.Core
 {
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
@@ -21,6 +24,7 @@
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
 
+        private List<IEntity> entities;
         private IPlayer player;
         private IInitializer initializer;
         private IInputCommand inputCommand;
@@ -55,6 +59,8 @@
 
             this.player.Load(this.Content, this.GraphicsDevice, "Content/Pictures/Ship1.png");
             this.inputCommand.KeyPressed += this.player.OnKeyPressed;
+
+            this.player.LoadWeapon(this.Content, GraphicsDevice, "Content/Pictures/Bulet.png");
             // TO HERE
 
             //this.initializer.SetGameMouse(this, GraphicsConstants.IS_MOUSE_VISIBLE);
@@ -62,6 +68,7 @@
             //                                       GraphicsConstants.PREFFER_BUFFER_WIDTH,
             //                                       GraphicsConstants.PREFFER_BUFFER_HEIGHT);
 
+            
             base.Initialize();
         }
 
@@ -73,6 +80,7 @@
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             this.spriteBatch = new SpriteBatch(this.GraphicsDevice);
+            entities = new List<IEntity> {this.player};
 
             // TODO: use this.Content to load your game content here
         }
@@ -101,7 +109,10 @@
                 Exit();
             }
 
-            this.player.Update(gameTime, currentKeyboardState);
+            foreach (var entity in entities)
+            {
+                entity.Update(gameTime, currentKeyboardState);
+            }
 
             // TODO: Add your update logic here
 
@@ -118,7 +129,10 @@
 
             // TODO: Add your drawing code here
             this.spriteBatch.Begin();
-            this.player.Draw(this.spriteBatch);
+            foreach (var entity in entities)
+            {
+                entity.Draw(this.spriteBatch);
+            }
             this.spriteBatch.End();
 
             base.Draw(gameTime);

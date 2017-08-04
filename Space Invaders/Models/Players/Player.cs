@@ -1,4 +1,10 @@
-﻿namespace Space_Invaders.Models.Players
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
+using Space_Invaders.Interfaces.Models.Weapons;
+using Space_Invaders.Models.Weapons;
+
+namespace Space_Invaders.Models.Players
 {
     using Interfaces.Models.Players;
     using Entities;
@@ -34,5 +40,12 @@
         {
             this.Update(eventArgs.GameTime, eventArgs.KeyboardState);
         }
+
+        public void LoadWeapon(ContentManager content, GraphicsDevice device, string path)
+        {
+            Weapon.Load(content, device, path);
+        }
+
+        public Weapon Weapon { get; set; }
     }
 }
