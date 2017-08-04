@@ -13,13 +13,13 @@
         private Rectangle rectangle;
         private string name;
 
-        public Entity(int x, int y)
-            :this(x, y, EntityConstants.SHIP_WIDTH, EntityConstants.SHIP_HEIGHT)
+        protected Entity(int x, int y)
+            :this(x, y, EntityConstants.ShipWidth, EntityConstants.ShipHeight)
         {
 
         }
 
-        public Entity(int x, int y, int width, int height)
+        protected Entity(int x, int y, int width, int height)
         {
             this.Rectangle = new Rectangle(x, y, width, height);
         }
