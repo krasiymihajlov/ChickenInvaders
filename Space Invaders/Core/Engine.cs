@@ -87,6 +87,8 @@ namespace Space_Invaders.Core
             this.spriteBatch = new SpriteBatch(this.GraphicsDevice);
             entities = new List<IEntity> {this.player};
 
+            //var viewWidth= this.GraphicsDevice.Viewport.Width;
+
             enemyArmy.Load(this.Content, this.GraphicsDevice, "Pictures/Enemy2");
             // TODO: use this.Content to load your game content here
         }

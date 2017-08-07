@@ -39,7 +39,7 @@ namespace Space_Invaders.Models.Enimies
         {
             foreach (var enemy in this.troops)
             {
-                enemy.Update(gameTime, keyboardState);
+                enemy.MoveInTroops(this.troops[0,0].Rectangle.Location.X, this.troops[this.Rows - 1,this.Colomns - 1].Rectangle.Location.X, this.Colomns);
             }
         }
 

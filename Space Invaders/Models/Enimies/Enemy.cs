@@ -18,5 +18,7 @@ namespace Space_Invaders.Models.Enimies
         }
 
         public virtual bool IsAlive { get; protected set; }
+
+        public abstract void MoveInTroops(int leftmostUnitX, int rightmostUnitX, int colomns);
     }
 }
