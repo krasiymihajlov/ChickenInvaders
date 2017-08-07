@@ -4,6 +4,6 @@
 
     public interface IEnemy : IEntity
     {
-
+       bool IsAlive { get;}
     }
 }
