@@ -57,10 +57,10 @@ namespace Space_Invaders.Core
             this.player = new Exterminator(EntityConstants.ShipXStartCoordinates, 
                 EntityConstants.ShipYStartCoordinates, "R21");
 
-            this.player.Load(this.Content, this.GraphicsDevice, "Content/Pictures/Ship1.png");
+            this.player.Load(this.Content, this.GraphicsDevice, "Pictures/Ship1");
             this.inputCommand.KeyPressed += this.player.OnKeyPressed;
 
-            this.player.LoadWeapon(this.Content, GraphicsDevice, "Content/Pictures/Bulet.png");
+            this.player.LoadWeapon(this.Content, GraphicsDevice, "Pictures/Bulet");
             // TO HERE
 
             //this.initializer.SetGameMouse(this, GraphicsConstants.IS_MOUSE_VISIBLE);

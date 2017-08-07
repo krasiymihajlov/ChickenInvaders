@@ -65,11 +65,11 @@
 
         public virtual void Load(ContentManager content, GraphicsDevice GraphicsDevice, string path)
         {
-            //this.Texture = content.Load<Texture2D>("ship");
-            using (var stream = TitleContainer.OpenStream(path))
-            {
-                this.Texture = Texture2D.FromStream(GraphicsDevice, stream);
-            }
+            this.Texture = content.Load<Texture2D>(path);
+            //using (var stream = TitleContainer.OpenStream(path))
+            //{
+            //    this.Texture = Texture2D.FromStream(GraphicsDevice, stream);
+            //}
         }
 
         public abstract void Update(GameTime gameTime, KeyboardState keyboardState);
