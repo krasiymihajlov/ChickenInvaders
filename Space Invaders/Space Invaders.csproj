@@ -55,6 +55,7 @@
     <Compile Include="Interfaces\Models\Enemies\IEnemy.cs" />
     <Compile Include="Interfaces\Models\Enemies\IInvader.cs" />
     <Compile Include="Interfaces\Models\Enemies\IEnemyArmy.cs" />
+    <Compile Include="Interfaces\Models\Enemies\IInvaderArmy.cs" />
     <Compile Include="Interfaces\Models\Players\IPlayer.cs" />
     <Compile Include="Interfaces\Models\Weapons\IWeapon.cs" />
     <Compile Include="IO\InputCommands\Events\KeyPressedEventArgs.cs" />
@@ -62,6 +63,7 @@
     <Compile Include="IO\InputCommands\InputCommand.cs" />
     <Compile Include="Models\Enimies\Enemy.cs" />
     <Compile Include="Models\Enimies\Invader.cs" />
+    <Compile Include="Models\Enimies\InvaderArmy.cs" />
     <Compile Include="Models\Entities\EnemyArmy.cs" />
     <Compile Include="Models\Entities\Entity.cs" />
     <Compile Include="Models\Players\Exterminator.cs" />

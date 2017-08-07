@@ -17,6 +17,6 @@ namespace Space_Invaders.Models.Enimies
         {
         }
 
-        public bool IsAlive { get; }
+        public virtual bool IsAlive { get; protected set; }
     }
 }

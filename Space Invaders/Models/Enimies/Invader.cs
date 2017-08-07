@@ -6,8 +6,17 @@ namespace Space_Invaders.Models.Enimies
 {
     public class Invader : Enemy, IInvader
     {
+        private bool isAlive;
+
         public Invader(int x, int y) : base(x, y)
         {
+            this.IsAlive = true;
+        }
+
+        public override bool IsAlive
+        {
+            get { return this.isAlive; }
+            protected set { this.isAlive = value; }
         }
 
         public Invader(int x, int y, int width, int height) : base(x, y, width, height)

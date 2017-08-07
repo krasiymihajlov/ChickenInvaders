@@ -1,4 +1,6 @@
 ﻿using Space_Invaders.Interfaces.Globals;
+using Space_Invaders.Interfaces.Models.Enemies;
+using Space_Invaders.Models.Enimies;
 using Space_Invaders.Models.Weapons;
 
 namespace Space_Invaders.Core
@@ -28,6 +30,7 @@ namespace Space_Invaders.Core
         private IPlayer player;
         private IInitializer initializer;
         private IInputCommand inputCommand;
+        private IEnemyArmy enemyArmy;
 
         public Engine()
             : this(new Initilizer(), new InputCommand())
@@ -61,6 +64,8 @@ namespace Space_Invaders.Core
             this.inputCommand.KeyPressed += this.player.OnKeyPressed;
 
             this.player.LoadWeapon(this.Content, GraphicsDevice, "Pictures/Bulet");
+
+            this.enemyArmy = new InvaderArmy(3, 4);
             // TO HERE
 
             //this.initializer.SetGameMouse(this, GraphicsConstants.IS_MOUSE_VISIBLE);
@@ -82,6 +87,7 @@ namespace Space_Invaders.Core
             this.spriteBatch = new SpriteBatch(this.GraphicsDevice);
             entities = new List<IEntity> {this.player};
 
+            enemyArmy.Load(this.Content, this.GraphicsDevice, "Pictures/Enemy2");
             // TODO: use this.Content to load your game content here
         }
 
@@ -114,6 +120,8 @@ namespace Space_Invaders.Core
                 entity.Update(gameTime, currentKeyboardState);
             }
 
+            enemyArmy.Update(gameTime, currentKeyboardState);
+
             // TODO: Add your update logic here
 
             base.Update(gameTime);
@@ -133,6 +141,9 @@ namespace Space_Invaders.Core
             {
                 entity.Draw(this.spriteBatch);
             }
+
+            enemyArmy.Draw(spriteBatch);
+
             this.spriteBatch.End();
 
             base.Draw(gameTime);

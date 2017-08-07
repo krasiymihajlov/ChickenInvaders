@@ -8,7 +8,7 @@ namespace Space_Invaders.Interfaces.Models.Enemies
 {
     public interface IEnemyArmy
     {
-        int Cows { get; }
+        int Rows { get; }
         int Colomns { get; }
         int CurrentCount { get; }
 

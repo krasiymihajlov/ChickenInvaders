@@ -9,7 +9,13 @@ namespace Space_Invaders.Models.Entities
 {
     public abstract class EnemyArmy : IEnemyArmy
     {
-        public int Cows { get; }
+        protected EnemyArmy(int rows, int colomns)
+        {
+            this.Rows = rows;
+            this.Colomns = colomns;
+            this.CurrentCount = rows * colomns;
+        }
+        public int Rows { get; }
         public int Colomns { get; }
         public int CurrentCount { get; }
         public abstract void Update(GameTime gameTime, KeyboardState keyboardState);
