@@ -60,6 +60,7 @@
     <Compile Include="IO\InputCommands\Events\KeyPressedEventHandler.cs" />
     <Compile Include="IO\InputCommands\InputCommand.cs" />
     <Compile Include="Models\Enimies\Enemy.cs" />
+    <Compile Include="Models\Enimies\Invader.cs" />
     <Compile Include="Models\Entities\Entity.cs" />
     <Compile Include="Models\Players\Exterminator.cs" />
     <Compile Include="Models\Players\Player.cs" />
