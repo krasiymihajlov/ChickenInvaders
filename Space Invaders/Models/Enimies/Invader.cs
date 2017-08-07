@@ -16,7 +16,7 @@ namespace Space_Invaders.Models.Enimies
 
         public override void Update(GameTime gameTime, KeyboardState keyboardState)
         {
-            throw new System.NotImplementedException();
+            this.Rectangle = new Rectangle(this.Rectangle.X + 1, this.Rectangle.Y,this.Rectangle.Width, this.Rectangle.Height);
         }
     }
 }
