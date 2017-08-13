@@ -1,24 +1,22 @@
-﻿using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
-using Space_Invaders.Interfaces.Globals;
-using Space_Invaders.Interfaces.Models.Weapons;
-using Space_Invaders.Models.Weapons;
-
-namespace Space_Invaders.Models.Players
+﻿namespace Space_Invaders.Models.Players
 {
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Input;
     using Common.Constants.Entities;
     using Common.Constants.Graphics;
+    using Space_Invaders.Common.Constants.Weapons;
 
     public class Exterminator : Player
     {
+        private Rectangle weaponCoordinates;
+        private bool bulletIsActivated;
+
         public Exterminator(int x, int y, string playerName)
             : base(x, y, playerName)
         {
-            Weapon = new Bullet(x, y, 20, 20);
+
         }
-        
+
         public override void Update(GameTime gameTime, KeyboardState keyboardState)
         {
             if (keyboardState.IsKeyDown(Keys.Left))
@@ -41,10 +39,30 @@ namespace Space_Invaders.Models.Players
                 TryMoveDown();
             }
 
-            if (keyboardState.IsKeyDown(Keys.Space))
+            if (keyboardState.IsKeyDown(Keys.Space) && !this.bulletIsActivated)
             {
-                Weapon.Update(gameTime, keyboardState);
+                this.bulletIsActivated = true;
+
+                int rectX = this.Rectangle.X + (this.Rectangle.Width / 2) - (WeaponConstants.WeaponWidth / 2);
+                int rectY = this.Rectangle.Y - WeaponConstants.WeaponHeight;
+
+                this.weaponCoordinates = new Rectangle(rectX, rectY, WeaponConstants.WeaponWidth, WeaponConstants.WeaponHeight);
             }
+        }
+
+        public override Rectangle GetWeaponStartCoordinates()
+        {
+            return this.weaponCoordinates;
+        }
+
+        public override bool GetWeaponState()
+        {
+            return this.bulletIsActivated;
+        }
+
+        public override void SendWeaponState(bool isActivated)
+        {
+            this.bulletIsActivated = isActivated;
         }
 
         private void TryMoveLeft()
@@ -52,7 +70,7 @@ namespace Space_Invaders.Models.Players
             if (this.Rectangle.Left > 0)
             {
                 this.Rectangle = new Rectangle(this.Rectangle.X - EntityConstants.ShipSpeed,
-                    this.Rectangle.Y, EntityConstants.ShipWidth, EntityConstants.ShipHeight);
+                    this.Rectangle.Y, this.Rectangle.Width, this.Rectangle.Height);
             }
         }
 
@@ -60,8 +78,8 @@ namespace Space_Invaders.Models.Players
         {
             if (this.Rectangle.Top > 0)
             {
-                this.Rectangle = new Rectangle(this.Rectangle.X, this.Rectangle.Y - EntityConstants.ShipSpeed, 
-                    EntityConstants.ShipWidth, EntityConstants.ShipHeight);
+                this.Rectangle = new Rectangle(this.Rectangle.X, this.Rectangle.Y - EntityConstants.ShipSpeed,
+                    this.Rectangle.Width, this.Rectangle.Height);
             }
         }
 
@@ -69,8 +87,8 @@ namespace Space_Invaders.Models.Players
         {
             if (this.Rectangle.Bottom < EntityConstants.ShipYStartCoordinates + EntityConstants.ShipHeight)
             {
-                this.Rectangle = new Rectangle(this.Rectangle.X,this.Rectangle.Y + EntityConstants.ShipSpeed, 
-                    EntityConstants.ShipWidth, EntityConstants.ShipHeight);
+                this.Rectangle = new Rectangle(this.Rectangle.X,this.Rectangle.Y + EntityConstants.ShipSpeed,
+                    this.Rectangle.Width, this.Rectangle.Height);
             }
         }
 
@@ -79,7 +97,7 @@ namespace Space_Invaders.Models.Players
             if (this.Rectangle.Right < GraphicsConstants.ViewportWidth)
             {
                 this.Rectangle = new Rectangle(this.Rectangle.X + EntityConstants.ShipSpeed,
-                    this.Rectangle.Y, EntityConstants.ShipWidth, EntityConstants.ShipHeight);
+                    this.Rectangle.Y, this.Rectangle.Width, this.Rectangle.Height);
             }
         }
     }

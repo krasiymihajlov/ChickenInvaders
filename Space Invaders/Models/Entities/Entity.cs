@@ -11,14 +11,7 @@
     {
         private Texture2D texture;
         private Rectangle rectangle;
-        private string name;
-
-        protected Entity(int x, int y)
-            :this(x, y, EntityConstants.ShipWidth, EntityConstants.ShipHeight)
-        {
-
-        }
-
+        
         protected Entity(int x, int y, int width, int height)
         {
             this.Rectangle = new Rectangle(x, y, width, height);
@@ -50,26 +43,9 @@
             }
         }
 
-        public string Name
-        {
-            get
-            {
-                return this.name;
-            }
-
-            private set
-            {
-                this.name = value;
-            }
-        }
-
         public virtual void Load(ContentManager content, GraphicsDevice GraphicsDevice, string path)
         {
             this.Texture = content.Load<Texture2D>(path);
-            //using (var stream = TitleContainer.OpenStream(path))
-            //{
-            //    this.Texture = Texture2D.FromStream(GraphicsDevice, stream);
-            //}
         }
 
         public abstract void Update(GameTime gameTime, KeyboardState keyboardState);
@@ -78,5 +54,9 @@
         {
             spriteBatch.Draw(this.Texture, this.Rectangle, Color.White);
         }
+
+        public abstract bool GetWeaponState();
+
+        public abstract void SendWeaponState(bool isActivated);
     }
 }

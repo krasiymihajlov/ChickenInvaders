@@ -2,5 +2,6 @@
 {
     public interface IInvader : IEnemy
     {
+        void InvaderisDead();
     }
 }

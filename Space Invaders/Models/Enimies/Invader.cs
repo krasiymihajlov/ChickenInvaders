@@ -1,20 +1,26 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Input;
-using Space_Invaders.Common.Constants.Entities;
-using Space_Invaders.Common.Constants.Graphics;
-using Space_Invaders.Interfaces.Models.Enemies;
-
-namespace Space_Invaders.Models.Enimies
+﻿namespace Space_Invaders.Models.Enimies
 {
+    using Microsoft.Xna.Framework;
+    using Microsoft.Xna.Framework.Input;
+    using Space_Invaders.Common.Constants.Entities;
+    using Space_Invaders.Common.Constants.Graphics;
+    using Space_Invaders.Interfaces.Models.Enemies;
+
     public class Invader : Enemy, IInvader
     {
         private string direction;
-        private bool isAlive;
+        private bool isAlive;        
 
-        public Invader(int x, int y) : base(x, y)
+        public Invader(int x, int y) 
+            : base(x, y)
         {
             this.IsAlive = true;
         }
+
+        //public Invader(int x, int y, int width, int height)
+        //   : base(x, y, width, height)
+        //{
+        //}
 
         public override bool IsAlive
         {
@@ -22,13 +28,19 @@ namespace Space_Invaders.Models.Enimies
             protected set { this.isAlive = value; }
         }
 
-        public Invader(int x, int y, int width, int height) : base(x, y, width, height)
-        {
-        }
-
         public override void Update(GameTime gameTime, KeyboardState keyboardState)
         {
-            this.Rectangle = new Rectangle(this.Rectangle.X + 1, this.Rectangle.Y,this.Rectangle.Width, this.Rectangle.Height);
+            this.Rectangle = new Rectangle(this.Rectangle.X + 1, this.Rectangle.Y,this.Rectangle.Width, 
+                this.Rectangle.Height);
+        }
+
+        public override bool GetWeaponState()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public override void SendWeaponState(bool isActivated)
+        {
         }
 
         public override void MoveInTroops(int leftmostUnitX, int rightmostUnitX, int colomns)
@@ -38,11 +50,11 @@ namespace Space_Invaders.Models.Enimies
                 direction = "RIGHT";
             }
 
-            if (leftmostUnitX > 0 && direction == "LEFT")
+            if (leftmostUnitX - 50 > 0 && direction == "LEFT")
             {
-                this.Rectangle = new Rectangle(this.Rectangle.X -  5, this.Rectangle.Y,this.Rectangle.Width, this.Rectangle.Height);
+                this.Rectangle = new Rectangle(this.Rectangle.X - 5, this.Rectangle.Y,this.Rectangle.Width, this.Rectangle.Height);
             }
-            else if ( rightmostUnitX + this.Texture.Width  < GraphicsConstants.ViewportWidth  && direction == "RIGHT")
+            else if (rightmostUnitX + this.Texture.Width  < GraphicsConstants.ViewportWidth  && direction == "RIGHT")
             {
                 this.Rectangle = new Rectangle(this.Rectangle.X + 5, this.Rectangle.Y,this.Rectangle.Width, this.Rectangle.Height);
             }
@@ -57,6 +69,11 @@ namespace Space_Invaders.Models.Enimies
                     direction = "LEFT";
                 }
             }
+        }
+
+        public void InvaderisDead()
+        {
+            this.IsAlive = false;
         }
     }
 }

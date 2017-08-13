@@ -1,4 +1,4 @@
-﻿namespace Space_Invaders.Common
+﻿namespace Space_Invaders.Enumerations
 {
     public enum Visibility
     {

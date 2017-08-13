@@ -1,9 +1,12 @@
-﻿using Space_Invaders.Interfaces.Globals;
-
-namespace Space_Invaders.Interfaces.Models.Weapons
+﻿namespace Space_Invaders.Interfaces.Models.Weapons
 {
-    public interface IWeapon : IEntity
+    using Microsoft.Xna.Framework;
+    using Space_Invaders.Interfaces.Globals;
+
+    public interface IWeapon : IEntity, IFlexable
     {
-        string IsActivated { get; }
+        bool IsActivated { get; }
+
+        void GetNewRectangleCoordinates(Rectangle rect);
     }
 }

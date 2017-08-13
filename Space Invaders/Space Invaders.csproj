@@ -41,15 +41,18 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Common\Constants\Enemies\EnemyConstans.cs" />
     <Compile Include="Common\Constants\Graphics\GraphicsConstants.cs" />
-    <Compile Include="Common\Direction.cs" />
+    <Compile Include="Common\Constants\Weapons\WeaponConstants.cs" />
+    <Compile Include="Enumerations\Direction.cs" />
     <Compile Include="Common\Constants\Entities\EntityConstants.cs" />
-    <Compile Include="Common\Visibility.cs" />
+    <Compile Include="Enumerations\Visibility.cs" />
     <Compile Include="Core\Engine.cs" />
     <Compile Include="Core\Initilizer.cs" />
     <Compile Include="Interfaces\Core\IEngine.cs" />
     <Compile Include="Interfaces\Core\IInitializer.cs" />
     <Compile Include="Interfaces\Globals\IEntity.cs" />
+    <Compile Include="Interfaces\Globals\IFlexable.cs" />
     <Compile Include="Interfaces\Globals\ILocationable.cs" />
     <Compile Include="Interfaces\IO\InputCommands\IInputCommand.cs" />
     <Compile Include="Interfaces\Models\Enemies\IEnemy.cs" />
@@ -64,6 +67,7 @@
     <Compile Include="Models\Enimies\Enemy.cs" />
     <Compile Include="Models\Enimies\Invader.cs" />
     <Compile Include="Models\Enimies\InvaderArmy.cs" />
+    <Compile Include="Models\Enimies\TestEnemy.cs" />
     <Compile Include="Models\Entities\EnemyArmy.cs" />
     <Compile Include="Models\Entities\Entity.cs" />
     <Compile Include="Models\Players\Exterminator.cs" />
@@ -72,6 +76,9 @@
     <Compile Include="Models\Weapons\Weapon.cs" />
     <Compile Include="StartUp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\ObserverPattern\IObservable.cs" />
+    <Compile Include="Utilities\ObserverPattern\IObserver.cs" />
+    <Compile Include="Utilities\ObserverPattern\Subject.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
@@ -81,18 +88,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Pictures\Boom.png" />
+    <Content Include="Content\Pictures\Boom.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Pictures\Bulet.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Pictures\Enemy1.png" />
+    <Content Include="Content\Pictures\Enemy1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Pictures\Enemy2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Pictures\Ship1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Ship.png" />
+    <Content Include="Content\Ship.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>

@@ -6,19 +6,12 @@ using Space_Invaders.Interfaces.Globals;
 
 namespace Space_Invaders.Interfaces.Models.Enemies
 {
-    public interface IEnemyArmy
+    public interface IEnemyArmy : IEntity
     {
-        int Rows { get; }
-        int Colomns { get; }
         int CurrentCount { get; }
 
-
-        void Update(GameTime gameTime, KeyboardState keyboardState);
-
-        void Draw(SpriteBatch spriteBatch);
-
-        void Load(ContentManager content, GraphicsDevice GraphicsDevice, string path);
-
         bool CheckForInersection(IEntity entity);
+
+        void GetBulletRectangle(Rectangle rect);
     }
 }

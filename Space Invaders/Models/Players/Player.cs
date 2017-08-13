@@ -1,15 +1,11 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
-using Space_Invaders.Interfaces.Models.Weapons;
-using Space_Invaders.Models.Weapons;
-
-namespace Space_Invaders.Models.Players
+﻿namespace Space_Invaders.Models.Players
 {
     using Interfaces.Models.Players;
     using Entities;
     using Interfaces.IO.InputCommands;
     using IO.InputCommands.Events;
+    using Space_Invaders.Common.Constants.Entities;
+    using Microsoft.Xna.Framework;
 
     public abstract class Player : Entity, IPlayer
     {
@@ -17,7 +13,7 @@ namespace Space_Invaders.Models.Players
         private int points;
 
         protected Player(int x, int y, string playerName)
-            : base(x, y)
+            : base(x, y, EntityConstants.ShipWidth, EntityConstants.ShipHeight)
         {
             this.PlayerName = playerName;
         }
@@ -36,16 +32,11 @@ namespace Space_Invaders.Models.Players
             private set => this.points = value;
         }
 
+        public abstract Rectangle GetWeaponStartCoordinates();
+
         public void OnKeyPressed(IInputCommand sender, KeyPressedEventArgs eventArgs)
         {
             this.Update(eventArgs.GameTime, eventArgs.KeyboardState);
         }
-
-        public void LoadWeapon(ContentManager content, GraphicsDevice device, string path)
-        {
-            Weapon.Load(content, device, path);
-        }
-
-        public Weapon Weapon { get; set; }
     }
 }

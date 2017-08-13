@@ -9,17 +9,14 @@ namespace Space_Invaders.Core
     using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework.Input;
     using Space_Invaders.Common.Constants.Entities;
-    using Space_Invaders.Common.Constants.Graphics;
+    using Space_Invaders.Common.Constants.Weapons;
     using Space_Invaders.Interfaces.Core;
     using Space_Invaders.Interfaces.IO.InputCommands;
     using Space_Invaders.Interfaces.Models.Players;
+    using Space_Invaders.Interfaces.Models.Weapons;
     using Space_Invaders.IO.InputCommands;
     using Space_Invaders.Models.Players;
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
 
     public class Engine : Game, IEngine
     {
@@ -28,9 +25,11 @@ namespace Space_Invaders.Core
 
         private List<IEntity> entities;
         private IPlayer player;
+        private IWeapon weapon;
         private IInitializer initializer;
         private IInputCommand inputCommand;
         private IEnemyArmy enemyArmy;
+        private bool weapontVisibility;
 
         public Engine()
             : this(new Initilizer(), new InputCommand())
@@ -57,15 +56,19 @@ namespace Space_Invaders.Core
             // TODO: Add your initialization logic here
 
             // MUST BE DONE FROM HERE
-            this.player = new Exterminator(EntityConstants.ShipXStartCoordinates, 
+            this.player = new Exterminator(EntityConstants.ShipXStartCoordinates,
                 EntityConstants.ShipYStartCoordinates, "R21");
 
-            this.player.Load(this.Content, this.GraphicsDevice, "Pictures/Ship1");
             this.inputCommand.KeyPressed += this.player.OnKeyPressed;
 
-            this.player.LoadWeapon(this.Content, GraphicsDevice, "Pictures/Bulet");
+            this.weapon = new Bullet(0, 0, new Rectangle(this.player.Rectangle.X, this.player.Rectangle.Y,
+                WeaponConstants.WeaponWidth, WeaponConstants.WeaponHeight));
 
-            this.enemyArmy = new InvaderArmy(3, 4);
+            //this.player.LoadWeapon(this.Content, GraphicsDevice, "Pictures/Bulet");
+
+            this.enemyArmy = new InvaderArmy();
+
+
             // TO HERE
 
             //this.initializer.SetGameMouse(this, GraphicsConstants.IS_MOUSE_VISIBLE);
@@ -73,7 +76,7 @@ namespace Space_Invaders.Core
             //                                       GraphicsConstants.PREFFER_BUFFER_WIDTH,
             //                                       GraphicsConstants.PREFFER_BUFFER_HEIGHT);
 
-            
+
             base.Initialize();
         }
 
@@ -85,11 +88,14 @@ namespace Space_Invaders.Core
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             this.spriteBatch = new SpriteBatch(this.GraphicsDevice);
-            entities = new List<IEntity> {this.player};
+            this.entities = new List<IEntity> { this.player, this.weapon, this.enemyArmy };
 
             //var viewWidth= this.GraphicsDevice.Viewport.Width;
 
-            enemyArmy.Load(this.Content, this.GraphicsDevice, "Pictures/Enemy2");
+            this.player.Load(this.Content, this.GraphicsDevice, "Pictures/Ship1");
+            this.weapon.Load(this.Content, this.GraphicsDevice, "Pictures/Bulet");
+            this.enemyArmy.Load(this.Content, this.GraphicsDevice, "Pictures/Enemy2");
+
             // TODO: use this.Content to load your game content here
         }
 
@@ -117,14 +123,21 @@ namespace Space_Invaders.Core
                 Exit();
             }
 
+
             foreach (var entity in entities)
             {
-                entity.Update(gameTime, currentKeyboardState);
+                entity.SendWeaponState(this.weapontVisibility);    //Give the bool param 
+                entity.Update(gameTime, currentKeyboardState);   // Update Player
+
+                if (currentKeyboardState.IsKeyDown(Keys.Space) && this.weapontVisibility)
+                {
+                    this.weapon.GetNewRectangleCoordinates(this.player.GetWeaponStartCoordinates());
+                }
+                
+                this.weapontVisibility = entity.GetWeaponState();  // Update current Bullet State
             }
 
-            enemyArmy.Update(gameTime, currentKeyboardState);
-
-            // TODO: Add your update logic here
+            this.enemyArmy.GetBulletRectangle(this.weapon.Rectangle);
 
             base.Update(gameTime);
         }
@@ -137,17 +150,13 @@ namespace Space_Invaders.Core
         {
             this.GraphicsDevice.Clear(Color.WhiteSmoke);
 
-            // TODO: Add your drawing code here
             this.spriteBatch.Begin();
             foreach (var entity in entities)
             {
                 entity.Draw(this.spriteBatch);
             }
 
-            enemyArmy.Draw(spriteBatch);
-
             this.spriteBatch.End();
-
             base.Draw(gameTime);
         }
     }

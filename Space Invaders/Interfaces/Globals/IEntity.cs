@@ -5,7 +5,7 @@
     using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework.Input;
 
-    public interface IEntity : ILocationable
+    public interface IEntity : ILocationable, IFlexable
     {
         void Load(ContentManager content, GraphicsDevice GraphicsDevice, string path);
 

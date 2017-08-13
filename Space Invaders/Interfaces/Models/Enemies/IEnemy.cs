@@ -6,7 +6,7 @@ namespace Space_Invaders.Interfaces.Models.Enemies
 
     public interface IEnemy : IEntity
     {
-       bool IsAlive { get;}
+       bool IsAlive { get; }
 
        void MoveInTroops(int leftmostUnitX, int rightmostUnitX, int colomns);
     }
