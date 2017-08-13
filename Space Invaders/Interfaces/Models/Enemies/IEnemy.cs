@@ -1,6 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-
-namespace Space_Invaders.Interfaces.Models.Enemies
+﻿namespace Space_Invaders.Interfaces.Models.Enemies
 {
     using Space_Invaders.Interfaces.Globals;
 

@@ -10,6 +10,8 @@
     using Space_Invaders.Interfaces.Models.Enemies;
     using Space_Invaders.Models.Entities;
     using Space_Invaders.Common.Constants.Enemies;
+    using Space_Invaders.Common.Constants.Graphics;
+    using Space_Invaders.Enumerations;
 
     public class InvaderArmy : EnemyArmy 
     {
@@ -23,7 +25,7 @@
         {            
             this.troops = new Invader[EnemyConstans.Rows, EnemyConstans.Cols];
             this.FillArmy();
-            this.moveDirections = new Direction[]{Direction.RIGHT, Direction.DOWN, Direction.LEFT, Direction.DOWN};
+            this.moveDirections = new[]{Direction.RIGHT, Direction.DOWN, Direction.LEFT, Direction.DOWN};
             this.directionIndex = 0;
         }
 
@@ -42,7 +44,7 @@
         {
             int xUpdate = 0;
             int yUpdate = 0;
-            if (moveDirections[directionIndex] == Direction.RIGHT)
+            if (this.moveDirections[this.directionIndex] == Direction.RIGHT)
             if (this.weaponVisibility)
             {
                 foreach (var enemy in this.troops)
@@ -55,47 +57,46 @@
                 }
             }
 
-            foreach (var enemy in this.troops)
+            if (this.moveDirections[this.directionIndex] == Direction.RIGHT)
             {
                 xUpdate = 5;
             }
-            else if (moveDirections[directionIndex] == Direction.LEFT)
+            else if (this.moveDirections[this.directionIndex] == Direction.LEFT)
             {
                 xUpdate = -5;
-            }else if (moveDirections[directionIndex] == Direction.DOWN)
+            }
+            else if (this.moveDirections[this.directionIndex] == Direction.DOWN)
             {
                 yUpdate = 3;
             }
-
-
-
-            for (int i = 0; i < this.Rows; i++)
+            
+            for (int i = 0; i < EnemyConstans.Rows; i++)
             {
-                for (int j = 0; j < this.Colomns; j++)
+                for (int j = 0; j < EnemyConstans.Cols; j++)
                 {
-                    this.troops[i, j].MoveInTroops(xUpdate,yUpdate,this.Colomns);
+                    this.troops[i, j].MoveInTroops(xUpdate,yUpdate, EnemyConstans.Cols);
                 }
             }
 
-            int currentLeftmostUnitX = this.troops[0, this.Colomns - 1].Rectangle.X;
+            int currentLeftmostUnitX = this.troops[0, EnemyConstans.Cols - 1].Rectangle.X;
 
-            if (currentLeftmostUnitX + EntityConstants.Enemy2Width * (this.Colomns - 1)>
+            if (currentLeftmostUnitX + EntityConstants.Enemy2Width * (EnemyConstans.Cols - 1)>
                 GraphicsConstants.ViewportWidth
                 || currentLeftmostUnitX <= 0)
             {
                 directionIndex++;
             }
 
-            directionIndex %= moveDirections.Length;
+            this.directionIndex %= this.moveDirections.Length;
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            for (int i = 0; i < this.Rows; i++)
+            for (int i = 0; i < EnemyConstans.Rows; i++)
             {
-                for (int j = 0; j < this.Colomns; j++)
+                for (int j = 0; j < EnemyConstans.Cols; j++)
                 {
-					if(enemy.IsAlive)
+					if(this.troops[i, j].IsAlive)
 					{
                    		 spriteBatch.Draw(this.troops[i,j].Texture, this.troops[i, j].Rectangle, Color.White);
 					}
