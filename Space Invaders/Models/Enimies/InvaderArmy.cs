@@ -16,11 +16,15 @@
         private bool weaponVisibility;
         private IInvader[,] troops;
         private Rectangle bulletRectangle;
+        private Direction[] moveDirections;
+        private int directionIndex;
 
         public InvaderArmy() : base()
         {            
             this.troops = new Invader[EnemyConstans.Rows, EnemyConstans.Cols];
             this.FillArmy();
+            this.moveDirections = new Direction[]{Direction.RIGHT, Direction.DOWN, Direction.LEFT, Direction.DOWN};
+            this.directionIndex = 0;
         }
 
         private void FillArmy()
@@ -36,6 +40,9 @@
         
         public override void Update(GameTime gameTime, KeyboardState keyboardState)
         {
+            int xUpdate = 0;
+            int yUpdate = 0;
+            if (moveDirections[directionIndex] == Direction.RIGHT)
             if (this.weaponVisibility)
             {
                 foreach (var enemy in this.troops)
@@ -50,18 +57,48 @@
 
             foreach (var enemy in this.troops)
             {
-                enemy.MoveInTroops(this.troops[0,0].Rectangle.Location.X, 
-                    this.troops[EnemyConstans.Rows - 1, EnemyConstans.Cols - 1].Rectangle.Location.X, EnemyConstans.Cols);
+                xUpdate = 5;
             }
+            else if (moveDirections[directionIndex] == Direction.LEFT)
+            {
+                xUpdate = -5;
+            }else if (moveDirections[directionIndex] == Direction.DOWN)
+            {
+                yUpdate = 3;
+            }
+
+
+
+            for (int i = 0; i < this.Rows; i++)
+            {
+                for (int j = 0; j < this.Colomns; j++)
+                {
+                    this.troops[i, j].MoveInTroops(xUpdate,yUpdate,this.Colomns);
+                }
+            }
+
+            int currentLeftmostUnitX = this.troops[0, this.Colomns - 1].Rectangle.X;
+
+            if (currentLeftmostUnitX + EntityConstants.Enemy2Width * (this.Colomns - 1)>
+                GraphicsConstants.ViewportWidth
+                || currentLeftmostUnitX <= 0)
+            {
+                directionIndex++;
+            }
+
+            directionIndex %= moveDirections.Length;
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            foreach (var enemy in this.troops)
+            for (int i = 0; i < this.Rows; i++)
             {
-                if (enemy.IsAlive)
+                for (int j = 0; j < this.Colomns; j++)
                 {
-                    spriteBatch.Draw(enemy.Texture, enemy.Rectangle, Color.White);
+					if(enemy.IsAlive)
+					{
+                   		 spriteBatch.Draw(this.troops[i,j].Texture, this.troops[i, j].Rectangle, Color.White);
+					}
                 }
             }
         }
