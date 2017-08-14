@@ -2,8 +2,8 @@
 {
     public static class WeaponConstants
     {
-        public const int WeaponWidth = 20;
-        public const int WeaponHeight = 40;
+        public const int WeaponWidth = 10;
+        public const int WeaponHeight = 20;
         public const int WeaponSpeed = 5;
     }
 }
