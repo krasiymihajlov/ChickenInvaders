@@ -44,7 +44,6 @@
         {
             int xUpdate = 0;
             int yUpdate = 0;
-            if (this.moveDirections[this.directionIndex] == Direction.RIGHT)
             if (this.weaponVisibility)
             {
                 foreach (var enemy in this.troops)
@@ -78,13 +77,13 @@
                 }
             }
 
-            int currentLeftmostUnitX = this.troops[0, EnemyConstans.Cols - 1].Rectangle.X;
+            int currentLeftmostUnitX = this.troops[0, 0].Rectangle.X;
 
             if (currentLeftmostUnitX + EntityConstants.Enemy2Width * (EnemyConstans.Cols - 1)>
                 GraphicsConstants.ViewportWidth
                 || currentLeftmostUnitX <= 0)
             {
-                directionIndex++;
+                this.directionIndex++;
             }
 
             this.directionIndex %= this.moveDirections.Length;

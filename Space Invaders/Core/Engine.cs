@@ -151,7 +151,7 @@ namespace Space_Invaders.Core
             this.GraphicsDevice.Clear(Color.WhiteSmoke);
 
             this.spriteBatch.Begin();
-            foreach (var entity in entities)
+            foreach (var entity in this.entities)
             {
                 entity.Draw(this.spriteBatch);
             }
