@@ -35,6 +35,10 @@
         private IWeapon weapon;
         private bool weapontVisibility;
 
+        Texture2D background;
+        Rectangle mainFrame;
+
+
         public Engine()
             : this(new Initilizer(), new InputCommand())
         {
@@ -70,6 +74,11 @@
 
             this.entities = new List<IEntity> { this.player, this.weapon, this.enemyArmy };
 
+            this.graphics.IsFullScreen = false;
+            this.graphics.PreferredBackBufferWidth = 1024;
+            this.graphics.PreferredBackBufferHeight = 640;
+            this.graphics.ApplyChanges();
+
             // TO HERE
 
             //this.initializer.SetGameMouse(this, GraphicsConstants.IS_MOUSE_VISIBLE);
@@ -94,6 +103,12 @@
             this.weapon.Load(this.Content, this.GraphicsDevice, "Pictures/Bulet");
             this.enemyArmy.Load(this.Content, this.GraphicsDevice, "Pictures/Enemy2");
             this.pausedTexture = this.Content.Load<Texture2D>("Pictures/paused");
+            // Load the background content.
+         
+            this.background = Content.Load<Texture2D>("Pictures/Enemy1"); // backgroudn
+ 
+            this.mainFrame = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height); // background
+
             // TODO: use this.Content to load your game content here
         }
 
@@ -158,9 +173,13 @@
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
+ 
             this.GraphicsDevice.Clear(Color.WhiteSmoke);
+            
 
             this.spriteBatch.Begin();
+
+            this.spriteBatch.Draw(background, mainFrame, Color.White); // backgroud Load
             foreach (var entity in this.entities)
             {
                 entity.Draw(this.spriteBatch);

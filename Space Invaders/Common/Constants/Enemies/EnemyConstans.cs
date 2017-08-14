@@ -8,7 +8,7 @@
         public const int Enemy2Width = 72;
         public const int Enemy2Height = 56;
         public const int SpaceBetweenEnemies = 10;
-        public const int EnemyHorizontalSpeed = 7;
+        public const int EnemyHorizontalSpeed = 2; // TODO If ship is moving faster there is lag!!!
         public const int EnemyVerticalSpeed = 5;
     }
 }
