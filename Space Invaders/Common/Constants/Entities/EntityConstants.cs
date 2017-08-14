@@ -7,7 +7,5 @@
         public const int ShipWidth = 100;
         public const int ShipHeight = 60;
         public const int ShipSpeed = 3;
-        public const int Enemy2Width = 72;
-        public const int Enemy2Height = 56;
     }
 }
