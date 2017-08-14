@@ -3,7 +3,7 @@
     using Microsoft.Xna.Framework;
     using Space_Invaders.Interfaces.Globals;
 
-    public interface IWeapon : IEntity, IFlexable
+    public interface IWeapon : IEntity
     {
         bool IsActivated { get; }
 

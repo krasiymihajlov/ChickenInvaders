@@ -6,33 +6,28 @@
     using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework.Input;
     using Space_Invaders.Common.Constants.Enemies;
+    using Space_Invaders.Common.Constants.Entities;
     using Space_Invaders.Interfaces.Globals;
     using Space_Invaders.Interfaces.Models.Enemies;
 
-    public abstract class EnemyArmy : IEnemyArmy
+    public abstract class EnemyArmy : Entity, IEnemyArmy
     {
-        protected EnemyArmy()
+        protected EnemyArmy(int x, int y)
+            : base(x, y, EnemyConstans.Enemy2Width, EnemyConstans.Enemy2Height)
         {
             this.CurrentCount = EnemyConstans.Rows * EnemyConstans.Cols;
         }
         public int CurrentCount { get; private set; }
 
-        public Texture2D Texture => throw new NotImplementedException();
+        public bool WeaponVisibility { get; protected set; }
 
-        public Rectangle Rectangle => throw new NotImplementedException();
-
-        public abstract void Update(GameTime gameTime, KeyboardState keyboardState);
-
-        public abstract void Draw(SpriteBatch spriteBatch);
-
-        public abstract void Load(ContentManager content, GraphicsDevice GraphicsDevice, string path);
+        public Rectangle BulletRectangle { get; protected set; }
 
         public abstract bool CheckForInersection(IEntity entity);
 
-        public abstract void GetBulletRectangle(Rectangle rect);
-
-        public abstract bool GetWeaponState();
-
-        public abstract void SendWeaponState(bool isActivated);
+        public void GetBulletRectangle(Rectangle rect)
+        {
+            this.BulletRectangle = rect;
+        }
     }
 }

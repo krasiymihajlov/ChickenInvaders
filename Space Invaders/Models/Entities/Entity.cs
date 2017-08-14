@@ -1,62 +1,24 @@
 ﻿namespace Space_Invaders.Models.Entities
 {
-    using Microsoft.Xna.Framework;
-    using Microsoft.Xna.Framework.Content;
-    using Microsoft.Xna.Framework.Graphics;
-    using Microsoft.Xna.Framework.Input;
     using Space_Invaders.Interfaces.Globals;
-    using Space_Invaders.Common.Constants.Entities;
 
-    public abstract class Entity : IEntity
+    public abstract class Entity : Drawable, IEntity
     {
-        private Texture2D texture;
-        private Rectangle rectangle;
-        
         protected Entity(int x, int y, int width, int height)
+            :base(x, y, width, height)
         {
-            this.Rectangle = new Rectangle(x, y, width, height);
         }
 
-        public Texture2D Texture
-        {
-            get
-            {
-                return this.texture;
-            }
+        public bool BulletIsActivated { get; protected set; }
 
-            private set
-            {
-                this.texture = value;
-            }
-        }
-        
-        public Rectangle Rectangle
+        public bool GetWeaponState()
         {
-            get
-            {
-                return this.rectangle;
-            }
-
-            protected set
-            {
-                this.rectangle = value;
-            }
+            return this.BulletIsActivated;
         }
 
-        public virtual void Load(ContentManager content, GraphicsDevice GraphicsDevice, string path)
+        public void SendWeaponState(bool isActivated)
         {
-            this.Texture = content.Load<Texture2D>(path);
+            this.BulletIsActivated = isActivated;
         }
-
-        public abstract void Update(GameTime gameTime, KeyboardState keyboardState);
-
-        public virtual void Draw(SpriteBatch spriteBatch)
-        {
-            spriteBatch.Draw(this.Texture, this.Rectangle, Color.White);
-        }
-
-        public abstract bool GetWeaponState();
-
-        public abstract void SendWeaponState(bool isActivated);
     }
 }

@@ -5,64 +5,47 @@
     using Common.Constants.Entities;
     using Common.Constants.Graphics;
     using Space_Invaders.Common.Constants.Weapons;
+    using Space_Invaders.Interfaces.Globals;
 
     public class Exterminator : Player
     {
-        private Rectangle weaponCoordinates;
-        private bool bulletIsActivated;
 
         public Exterminator(int x, int y, string playerName)
             : base(x, y, playerName)
         {
-
         }
 
         public override void Update(GameTime gameTime, KeyboardState keyboardState)
         {
             if (keyboardState.IsKeyDown(Keys.Left))
             {
-                TryMoveLeft();
+                this.TryMoveLeft();
             }
 
             if (keyboardState.IsKeyDown(Keys.Right))
             {
-                TryMoveRight();
+                this.TryMoveRight();
             }
 
             if (keyboardState.IsKeyDown(Keys.Up))
             {
-                TryMoveUp();
+                this.TryMoveUp();
             }
 
             if (keyboardState.IsKeyDown(Keys.Down))
             {
-                TryMoveDown();
+                this.TryMoveDown();
             }
 
-            if (keyboardState.IsKeyDown(Keys.Space) && !this.bulletIsActivated)
+            if (keyboardState.IsKeyDown(Keys.Space) && !this.BulletIsActivated)
             {
-                this.bulletIsActivated = true;
+                this.BulletIsActivated = true;
 
                 int rectX = this.Rectangle.X + (this.Rectangle.Width / 2) - (WeaponConstants.WeaponWidth / 2);
                 int rectY = this.Rectangle.Y - WeaponConstants.WeaponHeight;
 
-                this.weaponCoordinates = new Rectangle(rectX, rectY, WeaponConstants.WeaponWidth, WeaponConstants.WeaponHeight);
+                this.WeaponCoordinates = new Rectangle(rectX, rectY, WeaponConstants.WeaponWidth, WeaponConstants.WeaponHeight);
             }
-        }
-
-        public override Rectangle GetWeaponStartCoordinates()
-        {
-            return this.weaponCoordinates;
-        }
-
-        public override bool GetWeaponState()
-        {
-            return this.bulletIsActivated;
-        }
-
-        public override void SendWeaponState(bool isActivated)
-        {
-            this.bulletIsActivated = isActivated;
         }
 
         private void TryMoveLeft()

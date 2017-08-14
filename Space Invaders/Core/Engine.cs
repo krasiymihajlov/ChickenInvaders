@@ -123,7 +123,6 @@ namespace Space_Invaders.Core
                 Exit();
             }
 
-
             foreach (var entity in entities)
             {
                 entity.SendWeaponState(this.weapontVisibility);    //Give the bool param 
@@ -133,7 +132,7 @@ namespace Space_Invaders.Core
                 {
                     this.weapon.GetNewRectangleCoordinates(this.player.GetWeaponStartCoordinates());
                 }
-                
+
                 this.weapontVisibility = entity.GetWeaponState();  // Update current Bullet State
             }
 

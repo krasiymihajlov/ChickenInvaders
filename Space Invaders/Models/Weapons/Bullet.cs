@@ -3,6 +3,8 @@
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework.Input;
+    using Space_Invaders.Common.Constants.Weapons;
+    using Space_Invaders.Interfaces.Globals;
 
     public class Bullet : Weapon
     {
@@ -24,33 +26,23 @@
             this.Rectangle = rect;
         }
 
-        public override bool GetWeaponState()
-        {
-            return this.IsActivated;
-        }
-
-        public override void SendWeaponState(bool isActivated)
-        {
-            this.IsActivated = isActivated;
-        }
-
         public override void Update(GameTime gameTime, KeyboardState keyboardState)
         {
-            if (this.IsActivated)
+            if (this.BulletIsActivated)
             {
                 this.Rectangle = new Rectangle(this.Rectangle.X,
-                    this.Rectangle.Y - 5, this.Rectangle.Width, this.Rectangle.Height);
+                    this.Rectangle.Y - WeaponConstants.WeaponSpeed, this.Rectangle.Width, this.Rectangle.Height);
             }
 
             if (this.Rectangle.Y + this.Rectangle.Height < 0)
             {
-                this.IsActivated = false;
+                this.BulletIsActivated = false;
             }
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (this.IsActivated)
+            if (this.BulletIsActivated)
             {
                 spriteBatch.Draw(this.Texture, this.Rectangle, Color.White);
             }

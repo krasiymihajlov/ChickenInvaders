@@ -3,9 +3,10 @@
     using Globals;
     using IO.InputCommands;
     using Microsoft.Xna.Framework;
+    using Space_Invaders.Interfaces.Models.Enemies;
     using Space_Invaders.IO.InputCommands.Events;
 
-    public interface IPlayer : IEntity, IFlexable 
+    public interface IPlayer : IEntity
     {
         string PlayerName { get; }
 

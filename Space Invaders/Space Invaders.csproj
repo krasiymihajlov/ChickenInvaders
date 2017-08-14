@@ -41,6 +41,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Common\Constants\Bonuses\BonusConstants.cs" />
     <Compile Include="Common\Constants\Enemies\EnemyConstans.cs" />
     <Compile Include="Common\Constants\Graphics\GraphicsConstants.cs" />
     <Compile Include="Common\Constants\Weapons\WeaponConstants.cs" />
@@ -51,10 +52,12 @@
     <Compile Include="Core\Initilizer.cs" />
     <Compile Include="Interfaces\Core\IEngine.cs" />
     <Compile Include="Interfaces\Core\IInitializer.cs" />
+    <Compile Include="Interfaces\Globals\IVisability.cs" />
     <Compile Include="Interfaces\Globals\IEntity.cs" />
     <Compile Include="Interfaces\Globals\IFlexable.cs" />
     <Compile Include="Interfaces\Globals\ILocationable.cs" />
     <Compile Include="Interfaces\IO\InputCommands\IInputCommand.cs" />
+    <Compile Include="Interfaces\Models\Bonuses\IBonus.cs" />
     <Compile Include="Interfaces\Models\Enemies\IEnemy.cs" />
     <Compile Include="Interfaces\Models\Enemies\IInvader.cs" />
     <Compile Include="Interfaces\Models\Enemies\IEnemyArmy.cs" />
@@ -64,10 +67,12 @@
     <Compile Include="IO\InputCommands\Events\KeyPressedEventArgs.cs" />
     <Compile Include="IO\InputCommands\Events\KeyPressedEventHandler.cs" />
     <Compile Include="IO\InputCommands\InputCommand.cs" />
+    <Compile Include="Models\Bonuses\Bonus.cs" />
+    <Compile Include="Models\Bonuses\LiveBonus.cs" />
     <Compile Include="Models\Enimies\Enemy.cs" />
     <Compile Include="Models\Enimies\Invader.cs" />
     <Compile Include="Models\Enimies\InvaderArmy.cs" />
-    <Compile Include="Models\Enimies\TestEnemy.cs" />
+    <Compile Include="Models\Entities\Drawable.cs" />
     <Compile Include="Models\Entities\EnemyArmy.cs" />
     <Compile Include="Models\Entities\Entity.cs" />
     <Compile Include="Models\Players\Exterminator.cs" />
@@ -103,6 +108,7 @@
     <Content Include="Content\Pictures\Ship1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Pictures\TitaniumBox.png" />
     <Content Include="Content\Ship.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -114,8 +120,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Common\Constants\Global\" />
-    <Folder Include="Interfaces\Models\Bonuses\" />
-    <Folder Include="Models\Bonuses\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />

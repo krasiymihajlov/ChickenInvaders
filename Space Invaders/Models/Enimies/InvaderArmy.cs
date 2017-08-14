@@ -15,13 +15,11 @@
 
     public class InvaderArmy : EnemyArmy 
     {
-        private bool weaponVisibility;
         private IInvader[,] troops;
-        private Rectangle bulletRectangle;
         private Direction[] moveDirections;
         private int directionIndex;
 
-        public InvaderArmy() : base()
+        public InvaderArmy() : base(2 , 4)     //// For fix!!!!!!!!
         {            
             this.troops = new Invader[EnemyConstans.Rows, EnemyConstans.Cols];
             this.FillArmy();
@@ -35,7 +33,8 @@
             {
                 for (int c = 0; c < EnemyConstans.Cols; c++)
                 {
-                    this.troops[r, c] = new Invader(r * (EnemyConstans.Enemy2Width + EnemyConstans.SpaceBetweenEnemies), c * ( EnemyConstans.Enemy2Height + EnemyConstans.SpaceBetweenEnemies));
+                    this.troops[r, c] = new Invader(r * (EnemyConstans.Enemy2Width + EnemyConstans.SpaceBetweenEnemies),
+                        c * ( EnemyConstans.Enemy2Height + EnemyConstans.SpaceBetweenEnemies));
                 }    
             }
         }
@@ -44,13 +43,13 @@
         {
             int xUpdate = 0;
             int yUpdate = 0;
-            if (this.weaponVisibility)
+            if (this.BulletIsActivated)
             {
                 foreach (var enemy in this.troops)
                 {
-                    if (enemy.IsAlive && this.bulletRectangle.Intersects(enemy.Rectangle))
+                    if (enemy.IsAlive && this.BulletRectangle.Intersects(enemy.Rectangle))
                     {
-                        this.weaponVisibility = false;
+                        this.BulletIsActivated = false;
                         enemy.InvaderisDead();
                     }
                 }
@@ -122,21 +121,6 @@
             }
 
             return false;
-        }
-
-        public override bool GetWeaponState()
-        {
-            return this.weaponVisibility;
-        }
-
-        public override void SendWeaponState(bool isActivated)
-        {
-            this.weaponVisibility = isActivated;
-        }
-
-        public override void GetBulletRectangle(Rectangle rect)
-        {
-            this.bulletRectangle = rect;
         }
     }
 }

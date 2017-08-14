@@ -18,6 +18,8 @@
             this.PlayerName = playerName;
         }
 
+        public Rectangle WeaponCoordinates { get; protected set; }
+
         public string PlayerName
         {
             get => this.playerName;
@@ -32,7 +34,10 @@
             private set => this.points = value;
         }
 
-        public abstract Rectangle GetWeaponStartCoordinates();
+        public Rectangle GetWeaponStartCoordinates()
+        {
+            return this.WeaponCoordinates;
+        }
 
         public void OnKeyPressed(IInputCommand sender, KeyPressedEventArgs eventArgs)
         {

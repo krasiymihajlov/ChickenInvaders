@@ -33,16 +33,6 @@
                 this.Rectangle.Height);
         }
 
-        public override bool GetWeaponState()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public override void SendWeaponState(bool isActivated)
-        {
-            throw new System.NotImplementedException();
-        }
-
         public override void MoveInTroops(int xUpdate, int yUpdate, int colomns)
         {
             this.Rectangle = new Rectangle(this.Rectangle.X + xUpdate, this.Rectangle.Y + yUpdate, this.Rectangle.Width, this.Rectangle.Height);
