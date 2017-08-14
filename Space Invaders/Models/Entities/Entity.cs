@@ -4,8 +4,12 @@
 
     public abstract class Entity : Drawable, IEntity
     {
+        protected Entity()
+        {
+        }
+
         protected Entity(int x, int y, int width, int height)
-            :base(x, y, width, height)
+            : base(x, y, width, height)
         {
         }
 

@@ -7,7 +7,7 @@ namespace Space_Invaders.Models.Enimies
     using Space_Invaders.Interfaces.Models.Enemies;
     using Space_Invaders.Models.Entities;
 
-    public abstract class Enemy : Entity, IEnemy
+    public abstract class Enemy : Drawable, IEnemy
     {
         protected Enemy(int x, int y) 
             : base(x, y, EnemyConstans.Enemy2Width, EnemyConstans.Enemy2Height)
@@ -19,7 +19,7 @@ namespace Space_Invaders.Models.Enimies
         {
         }
 
-        public virtual bool IsAlive { get; protected set; }
+        public bool IsAlive { get; protected set; }
 
         public abstract void MoveInTroops(int leftmostUnitX, int rightmostUnitX, int colomns);
     }

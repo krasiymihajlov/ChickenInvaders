@@ -19,24 +19,12 @@
         private Direction[] moveDirections;
         private int directionIndex;
 
-        public InvaderArmy() : base(2 , 4)     //// For fix!!!!!!!!
+        public InvaderArmy()     
         {            
             this.troops = new Invader[EnemyConstans.Rows, EnemyConstans.Cols];
             this.FillArmy();
-            this.moveDirections = new[]{Direction.RIGHT, Direction.DOWN, Direction.LEFT, Direction.DOWN};
+            this.moveDirections = new[] {Direction.RIGHT, Direction.DOWN, Direction.LEFT, Direction.DOWN};
             this.directionIndex = 0;
-        }
-
-        private void FillArmy()
-        {
-            for (int r = 0; r < EnemyConstans.Rows; r++)
-            {
-                for (int c = 0; c < EnemyConstans.Cols; c++)
-                {
-                    this.troops[r, c] = new Invader(r * (EnemyConstans.Enemy2Width + EnemyConstans.SpaceBetweenEnemies),
-                        c * ( EnemyConstans.Enemy2Height + EnemyConstans.SpaceBetweenEnemies));
-                }    
-            }
         }
         
         public override void Update(GameTime gameTime, KeyboardState keyboardState)
@@ -72,15 +60,14 @@
             {
                 for (int j = 0; j < EnemyConstans.Cols; j++)
                 {
-                    this.troops[i, j].MoveInTroops(xUpdate,yUpdate, EnemyConstans.Cols);
+                    this.troops[i, j].MoveInTroops(xUpdate, yUpdate, EnemyConstans.Cols);
                 }
             }
 
             int currentLeftmostUnitX = this.troops[0, 0].Rectangle.X;
 
-            if (currentLeftmostUnitX + EnemyConstans.Enemy2Width * EnemyConstans.Rows + EnemyConstans.SpaceBetweenEnemies * (EnemyConstans.Rows - 1 )>
-                GraphicsConstants.ViewportWidth
-                || currentLeftmostUnitX <= 0)
+            if (currentLeftmostUnitX + EnemyConstans.Enemy2Width * EnemyConstans.Rows + EnemyConstans.SpaceBetweenEnemies 
+                * (EnemyConstans.Rows - 1 ) > GraphicsConstants.ViewportWidth || currentLeftmostUnitX <= 0)
             {
                 this.directionIndex++;
             }
@@ -102,11 +89,11 @@
             }
         }
 
-        public override void Load(ContentManager content, GraphicsDevice GraphicsDevice, string path)
+        public override void Load(ContentManager content, GraphicsDevice graphicsDevice, string path)
         {
             foreach (var enemy in this.troops)
             {
-                enemy.Load(content, GraphicsDevice, path);
+                enemy.Load(content, graphicsDevice, path);
             }
         }
 
@@ -121,6 +108,18 @@
             }
 
             return false;
+        }
+
+        private void FillArmy()
+        {
+            for (int r = 0; r < EnemyConstans.Rows; r++)
+            {
+                for (int c = 0; c < EnemyConstans.Cols; c++)
+                {
+                    this.troops[r, c] = new Invader(r * (EnemyConstans.Enemy2Width + EnemyConstans.SpaceBetweenEnemies),
+                        c * (EnemyConstans.Enemy2Height + EnemyConstans.SpaceBetweenEnemies));
+                }
+            }
         }
     }
 }

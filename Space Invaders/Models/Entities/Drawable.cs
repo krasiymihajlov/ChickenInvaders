@@ -9,17 +9,20 @@
 
     public abstract class Drawable : IVisability
     {
+        protected Drawable()
+        {
+        }
+
         protected Drawable(int x, int y, int width, int height)
         {
             this.Rectangle = new Rectangle(x, y, width, height);
         }
 
         public Texture2D Texture { get; protected set; }
-        
 
         public Rectangle Rectangle { get; protected set; }
 
-        public virtual void Load(ContentManager content, GraphicsDevice GraphicsDevice, string path)
+        public virtual void Load(ContentManager content, GraphicsDevice graphicsDevice, string path)
         {
             this.Texture = content.Load<Texture2D>(path);
         }

@@ -2,7 +2,7 @@
 {
     using Space_Invaders.Interfaces.Globals;
 
-    public interface IEnemy : IEntity
+    public interface IEnemy : IVisability
     {
        bool IsAlive { get; }
 

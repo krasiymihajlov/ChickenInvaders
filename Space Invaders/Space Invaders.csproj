@@ -73,7 +73,7 @@
     <Compile Include="Models\Enimies\Invader.cs" />
     <Compile Include="Models\Enimies\InvaderArmy.cs" />
     <Compile Include="Models\Entities\Drawable.cs" />
-    <Compile Include="Models\Entities\EnemyArmy.cs" />
+    <Compile Include="Models\Enimies\EnemyArmy.cs" />
     <Compile Include="Models\Entities\Entity.cs" />
     <Compile Include="Models\Players\Exterminator.cs" />
     <Compile Include="Models\Players\Player.cs" />
@@ -81,9 +81,6 @@
     <Compile Include="Models\Weapons\Weapon.cs" />
     <Compile Include="StartUp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utilities\ObserverPattern\IObservable.cs" />
-    <Compile Include="Utilities\ObserverPattern\IObserver.cs" />
-    <Compile Include="Utilities\ObserverPattern\Subject.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

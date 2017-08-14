@@ -8,12 +8,10 @@
 
     public class Bullet : Weapon
     {
-        private Rectangle player;
 
-        public Bullet(int x, int y, Rectangle player) 
+        public Bullet(int x, int y) 
             : base(x, y)
         {
-            this.player = player;
         }
 
         public Bullet(int x, int y, int width, int height) 

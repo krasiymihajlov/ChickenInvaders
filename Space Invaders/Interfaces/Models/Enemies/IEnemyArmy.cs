@@ -8,7 +8,7 @@ namespace Space_Invaders.Interfaces.Models.Enemies
 {
     public interface IEnemyArmy : IEntity
     {
-        int CurrentCount { get; }
+        //int CurrentCount { get; }
 
         bool CheckForInersection(IEntity entity);
 

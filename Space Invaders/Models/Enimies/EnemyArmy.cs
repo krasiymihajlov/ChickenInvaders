@@ -1,4 +1,4 @@
-﻿namespace Space_Invaders.Models.Entities
+﻿namespace Space_Invaders.Models.Enimies
 {
     using System;
     using Microsoft.Xna.Framework;
@@ -9,15 +9,15 @@
     using Space_Invaders.Common.Constants.Entities;
     using Space_Invaders.Interfaces.Globals;
     using Space_Invaders.Interfaces.Models.Enemies;
+    using Space_Invaders.Models.Entities;
 
     public abstract class EnemyArmy : Entity, IEnemyArmy
     {
-        protected EnemyArmy(int x, int y)
-            : base(x, y, EnemyConstans.Enemy2Width, EnemyConstans.Enemy2Height)
+        protected EnemyArmy()
         {
-            this.CurrentCount = EnemyConstans.Rows * EnemyConstans.Cols;
+            //this.CurrentCount = EnemyConstans.Rows * EnemyConstans.Cols;
         }
-        public int CurrentCount { get; private set; }
+        //public int CurrentCount { get; private set; }
 
         public bool WeaponVisibility { get; protected set; }
 

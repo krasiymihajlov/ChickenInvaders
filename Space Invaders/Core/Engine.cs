@@ -61,14 +61,11 @@ namespace Space_Invaders.Core
 
             this.inputCommand.KeyPressed += this.player.OnKeyPressed;
 
-            this.weapon = new Bullet(0, 0, new Rectangle(this.player.Rectangle.X, this.player.Rectangle.Y,
-                WeaponConstants.WeaponWidth, WeaponConstants.WeaponHeight));
-
-            //this.player.LoadWeapon(this.Content, GraphicsDevice, "Pictures/Bulet");
-
+            this.weapon = new Bullet(WeaponConstants.StartXCoordinates, WeaponConstants.StartYCoordinates);
             this.enemyArmy = new InvaderArmy();
 
-
+            this.entities = new List<IEntity> { this.player, this.weapon, this.enemyArmy };
+            
             // TO HERE
 
             //this.initializer.SetGameMouse(this, GraphicsConstants.IS_MOUSE_VISIBLE);
@@ -86,9 +83,7 @@ namespace Space_Invaders.Core
         /// </summary>
         protected override void LoadContent()
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
             this.spriteBatch = new SpriteBatch(this.GraphicsDevice);
-            this.entities = new List<IEntity> { this.player, this.weapon, this.enemyArmy };
 
             //var viewWidth= this.GraphicsDevice.Viewport.Width;
 
