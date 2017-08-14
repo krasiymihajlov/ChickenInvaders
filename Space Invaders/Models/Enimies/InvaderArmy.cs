@@ -58,15 +58,15 @@
 
             if (this.moveDirections[this.directionIndex] == Direction.RIGHT)
             {
-                xUpdate = 5;
+                xUpdate = EnemyConstans.EnemyHorizontalSpeed;
             }
             else if (this.moveDirections[this.directionIndex] == Direction.LEFT)
             {
-                xUpdate = -5;
+                xUpdate = -EnemyConstans.EnemyHorizontalSpeed;
             }
             else if (this.moveDirections[this.directionIndex] == Direction.DOWN)
             {
-                yUpdate = 3;
+                yUpdate = EnemyConstans.EnemyVerticalSpeed;
             }
             
             for (int i = 0; i < EnemyConstans.Rows; i++)
