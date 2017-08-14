@@ -44,7 +44,6 @@
         {
             int xUpdate = 0;
             int yUpdate = 0;
-            if (this.moveDirections[this.directionIndex] == Direction.RIGHT)
             if (this.weaponVisibility)
             {
                 foreach (var enemy in this.troops)
