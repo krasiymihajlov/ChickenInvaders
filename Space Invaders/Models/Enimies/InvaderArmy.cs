@@ -83,7 +83,7 @@
                 GraphicsConstants.ViewportWidth
                 || currentLeftmostUnitX <= 0)
             {
-                directionIndex++;
+                this.directionIndex++;
             }
 
             this.directionIndex %= this.moveDirections.Length;

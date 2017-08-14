@@ -1,10 +1,5 @@
 ﻿namespace Space_Invaders.Models.Enimies
 {
-    using Microsoft.Xna.Framework;
-    using Microsoft.Xna.Framework.Content;
-    using Microsoft.Xna.Framework.Graphics;
-    using Microsoft.Xna.Framework.Input;
-    using Space_Invaders.Common.Constants.Enemies;
     using Space_Invaders.Common.Constants.Entities;
     using Space_Invaders.Interfaces.Models.Enemies;
     using Space_Invaders.Models.Entities;
