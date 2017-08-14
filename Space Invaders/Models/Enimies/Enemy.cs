@@ -7,7 +7,7 @@
     public abstract class Enemy : Entity, IEnemy
     {
         public Enemy(int x, int y) 
-            : base(x, y, EntityConstants.Enemy2Width, EntityConstants.Enemy2Height)
+            : base(x, y, EnemyConstans.Enemy2Width, EnemyConstans.Enemy2Height)
         {
         }
 

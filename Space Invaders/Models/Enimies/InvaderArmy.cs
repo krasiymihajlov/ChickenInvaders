@@ -35,7 +35,7 @@
             {
                 for (int c = 0; c < EnemyConstans.Cols; c++)
                 {
-                    this.troops[r, c] = new Invader(r * EntityConstants.Enemy2Width, c * EntityConstants.Enemy2Height);
+                    this.troops[r, c] = new Invader(r * (EnemyConstans.Enemy2Width + EnemyConstans.SpaceBetweenEnemies), c * ( EnemyConstans.Enemy2Height + EnemyConstans.SpaceBetweenEnemies));
                 }    
             }
         }
@@ -79,7 +79,7 @@
 
             int currentLeftmostUnitX = this.troops[0, 0].Rectangle.X;
 
-            if (currentLeftmostUnitX + EntityConstants.Enemy2Width * (EnemyConstans.Cols - 1)>
+            if (currentLeftmostUnitX + EnemyConstans.Enemy2Width * EnemyConstans.Rows + EnemyConstans.SpaceBetweenEnemies * (EnemyConstans.Rows - 1 )>
                 GraphicsConstants.ViewportWidth
                 || currentLeftmostUnitX <= 0)
             {
