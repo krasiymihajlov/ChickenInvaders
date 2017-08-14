@@ -1,4 +1,6 @@
-﻿namespace Space_Invaders.Models.Enimies
+﻿using Space_Invaders.Common.Constants.Enemies;
+
+namespace Space_Invaders.Models.Enimies
 {
     using Space_Invaders.Common.Constants.Entities;
     using Space_Invaders.Interfaces.Models.Enemies;
