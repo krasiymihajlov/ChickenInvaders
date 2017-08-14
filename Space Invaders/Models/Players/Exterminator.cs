@@ -9,7 +9,6 @@
 
     public class Exterminator : Player
     {
-
         public Exterminator(int x, int y, string playerName)
             : base(x, y, playerName)
         {
@@ -70,7 +69,7 @@
         {
             if (this.Rectangle.Bottom < EntityConstants.ShipYStartCoordinates + EntityConstants.ShipHeight)
             {
-                this.Rectangle = new Rectangle(this.Rectangle.X,this.Rectangle.Y + EntityConstants.ShipSpeed,
+                this.Rectangle = new Rectangle(this.Rectangle.X, this.Rectangle.Y + EntityConstants.ShipSpeed,
                     this.Rectangle.Width, this.Rectangle.Height);
             }
         }

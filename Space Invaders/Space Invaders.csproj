@@ -47,6 +47,7 @@
     <Compile Include="Common\Constants\Weapons\WeaponConstants.cs" />
     <Compile Include="Enumerations\Direction.cs" />
     <Compile Include="Common\Constants\Entities\EntityConstants.cs" />
+    <Compile Include="Enumerations\GameState.cs" />
     <Compile Include="Enumerations\Visibility.cs" />
     <Compile Include="Core\Engine.cs" />
     <Compile Include="Core\Initilizer.cs" />

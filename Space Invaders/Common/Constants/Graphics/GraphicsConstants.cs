@@ -6,8 +6,8 @@
         public const int PrefferBufferHeight = 700;
 
         public const int ViewportWidth = 800;
+        public const int ViewportHeight = 450;
 
         public const bool IsMouseVisible = true;
-        
     }
 }
